@@ -1,0 +1,14 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "FD 2023 first DB",
+      "database": "fd_2023_1_first_pg_db_1",
+      "username": "postgres",
+      "password": "postgres"
+    }
+  ]
+}
