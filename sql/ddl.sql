@@ -7,12 +7,12 @@ CREATE TABLE table_name(
 );
 */
 CREATE TABLE users(
-  email VARCHAR(128),
-  first_name VARCHAR(64),
-  last_name VARCHAR(64),
+  email VARCHAR(128) NOT NULL,
+  first_name VARCHAR(64) NOT NULL,
+  last_name VARCHAR(64) NOT NULL,
   birthday DATE,
   is_male BOOLEAN,
-  current_balance NUMERIC(10,2)
+  current_balance NUMERIC(10,2) NOT NULL
 );
 -- @block delete users table
 DROP TABLE users;
