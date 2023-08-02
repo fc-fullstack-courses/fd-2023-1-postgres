@@ -7,12 +7,14 @@ CREATE TABLE table_name(
 );
 */
 CREATE TABLE users(
+  -- email VARCHAR(128) NOT NULL CONSTRAINT "Email must be unique" UNIQUE, -- ограничение столбца
   email VARCHAR(128) NOT NULL,
   first_name VARCHAR(64) NOT NULL,
   last_name VARCHAR(64) NOT NULL,
   birthday DATE,
   is_male BOOLEAN,
-  current_balance NUMERIC(10,2) NOT NULL
+  current_balance NUMERIC(10,2) NOT NULL,
+  CONSTRAINT "Email must be unique" UNIQUE (email) -- ограничение таблицы
 );
 -- @block delete users table
 DROP TABLE users;
