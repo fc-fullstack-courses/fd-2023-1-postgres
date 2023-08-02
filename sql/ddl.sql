@@ -8,7 +8,7 @@ CREATE TABLE table_name(
 */
 CREATE TABLE users(
   -- id UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
-  id SERIAL NOT NULL UNIQUE,
+  id SERIAL PRIMARY KEY,
   -- email VARCHAR(128) NOT NULL CONSTRAINT "Email must be unique" UNIQUE, -- ограничение столбца
   email VARCHAR(128) NOT NULL CONSTRAINT "email must be valid" 
   CHECK (email ~ '[A-Za-z0-9]{3,32}@[a-z]{2,8}\.[a-z]{2,8}'),
