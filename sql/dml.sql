@@ -57,3 +57,8 @@ UPDATE users SET mass = 120 WHERE is_male;
 UPDATE users SET first_name = 'Anton', last_name = 'Bogun' WHERE id = 1;
 -- при обновлении доступны старые значения
 UPDATE users SET mass = mass + 5 WHERE is_male;
+-- @block delete data in table
+-- удаление всех записей в таблице
+DELETE FROM users;
+-- удаление конкретной записи
+DELETE FROM users WHERE id = 7;
