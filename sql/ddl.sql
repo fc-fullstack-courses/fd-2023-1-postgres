@@ -64,3 +64,7 @@ SET DEFAULT true;
 ALTER TABLE users
 ALTER COLUMN is_male
 DROP DEFAULT;
+-- @block change column type
+ALTER TABLE users
+ALTER COLUMN first_name
+TYPE VARCHAR(50);
