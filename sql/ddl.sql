@@ -45,3 +45,10 @@ ADD CONSTRAINT "correct_created_at" CHECK (created_at <= current_timestamp);
 ALTER TABLE users
 ALTER COLUMN birthday
 SET NOT NULL;
+-- @block delete constraint
+ALTER TABLE users
+DROP CONSTRAINT "correct_created_at";
+-- NOT NULL
+ALTER TABLE users
+ALTER COLUMN last_name
+DROP NOT NULL;
