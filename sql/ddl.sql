@@ -52,3 +52,7 @@ DROP CONSTRAINT "correct_created_at";
 ALTER TABLE users
 ALTER COLUMN last_name
 DROP NOT NULL;
+-- @block "change" constraint
+ALTER TABLE users
+DROP CONSTRAINT users_first_name_check,
+ADD CHECK (first_name ~ '.{1,64}');
