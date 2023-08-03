@@ -31,3 +31,9 @@ ALTER TABLE users
 ADD COLUMN weight NUMERIC(5,2) CHECK(weight BETWEEN 0.5 AND 800),
 ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
 ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp;
+-- @block remove column
+ALTER TABLE users
+DROP COLUMN current_balance;
+-- @block cascade remove
+ALTER TABLE users
+DROP COLUMN updated_at CASCADE;
