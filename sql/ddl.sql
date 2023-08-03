@@ -68,3 +68,8 @@ DROP DEFAULT;
 ALTER TABLE users
 ALTER COLUMN first_name
 TYPE VARCHAR(50);
+-- @block rename column
+ALTER TABLE users
+RENAME COLUMN weight TO mass;
+-- @block rename table
+ALTER TABLE users RENAME TO humans;
