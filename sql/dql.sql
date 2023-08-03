@@ -19,3 +19,15 @@ WHERE first_name IN ('Test', 'Test 1', 'Test 2');
 --
 SELECT * FROM users
 WHERE id BETWEEN 9 AND 12;
+-- @block псевдонимы
+SELECT id, first_name AS "имя", last_name фамилия, email "Электронная почта", birthday, is_male
+FROM users;
+-- @block пользовательские столбцы
+SELECT id, first_name || ' ' || last_name AS "Full name"
+FROM users;
+-- @block пример подзапроса
+SELECT * FROM (
+  SELECT id, first_name || ' ' || last_name AS "Full name"
+  FROM users
+) AS users_with_full_names
+WHERE char_length("Full name") > 15;
