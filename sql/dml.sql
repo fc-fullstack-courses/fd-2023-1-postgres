@@ -47,3 +47,13 @@ VALUES
 ('Test', 'Testovich', 'test7@test.test', true, 100 ,'1994-08-10'),
 ('Test', 'Testovich', 'test8@test.test', true, 100 ,'1994-08-10'),
 ('Test', 'Testovich', 'test9@test.test', true, 100 ,'1994-08-10');
+-- @block update data in table
+UPDATE users SET mass = 50; -- обновляет значения каждой записи
+-- поставить всем юзерам с id 7 дату рождния 1996-11-11
+UPDATE users SET birthday = '1996-11-11' WHERE id = 7; 
+-- поставить всем мужчинам вес 120
+UPDATE users SET mass = 120 WHERE is_male;
+-- апдейт нескольки полей одновременно
+UPDATE users SET first_name = 'Anton', last_name = 'Bogun' WHERE id = 1;
+-- при обновлении доступны старые значения
+UPDATE users SET mass = mass + 5 WHERE is_male;

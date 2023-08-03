@@ -72,4 +72,4 @@ TYPE VARCHAR(50);
 ALTER TABLE users
 RENAME COLUMN weight TO mass;
 -- @block rename table
-ALTER TABLE users RENAME TO humans;
+ALTER TABLE humans RENAME TO users;
