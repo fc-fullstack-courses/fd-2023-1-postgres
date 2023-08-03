@@ -22,3 +22,12 @@ CREATE TABLE users(
 );
 -- @block delete users table
 DROP TABLE users;
+-- ALTER TABLE
+-- @block add column
+ALTER TABLE users
+ADD COLUMN height NUMERIC(3,2) CHECK(height BETWEEN 0.3 AND 3);
+-- @block add columns
+ALTER TABLE users
+ADD COLUMN weight NUMERIC(5,2) CHECK(weight BETWEEN 0.5 AND 800),
+ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
+ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp;
