@@ -37,3 +37,11 @@ DROP COLUMN current_balance;
 -- @block cascade remove
 ALTER TABLE users
 DROP COLUMN updated_at CASCADE;
+-- @block add constraint
+ALTER TABLE users
+-- ADD CHECK (created_at <= current_timestamp);
+ADD CONSTRAINT "correct_created_at" CHECK (created_at <= current_timestamp);
+-- NOT NULL
+ALTER TABLE users
+ALTER COLUMN birthday
+SET NOT NULL;
