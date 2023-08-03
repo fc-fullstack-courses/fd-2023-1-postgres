@@ -25,15 +25,16 @@ VALUES
 -- ('Test 2', 'Testovich 2', 'test3@test.test', true, -10000 ,'3004-08-10'),
 -- (NULL, NULL, NULL, NULL, NULL ,NULL);
 INSERT INTO users
-(first_name, last_name, email, is_male, current_balance ,birthday)
+(first_name, last_name, email, is_male, birthday)
 VALUES 
-('Test', 'Testovich', 'test@test.test', true, 100 ,'1994-08-10'),
-('Test', 'Testovich', 'dsadssadadsa@test.test', true, 10000 ,'1995-08-10'),
-('teafs', '', 'test22@test.test', true, 100 ,'1994-08-10'),
-('Test 0', 'Testovich 0', 'test100@test.test', true, 100 ,'1994-08-10'),
-('Test 1', 'Testovich 1', 'test31@test.test', true, 10000 ,'1904-08-10'),
-('Test 2', 'Testovich 2', 'test32@test.test', true, 0 ,'2023-08-01'),
-('asdsad', 'asdsadsa', 'asdsadsa@test.test', NULL, 0 ,NULL);
+('Test', 'Testovich', 'test@test.test', true, '1994-08-10'),
+('Test', 'Testovich', 'dsadssadadsa@test.test', true, '1995-08-10'),
+('teafs', '', 'test22@test.test', true, '1994-08-10'),
+('Test 0', 'Testovich 0', 'test100@test.test', true, '1994-08-10'),
+('Test 1', 'Testovich 1', 'test31@test.test', true, '1904-08-10'),
+('Test 2', 'Testovich 2', 'test32@test.test', true, '2023-08-01'),
+('asdsad', 'asdsadsa', 'asdsadsa@test.test', NULL, NULL)
+RETURNING *;
 -- @block key example
 INSERT INTO users
 (first_name, last_name, email, is_male, current_balance ,birthday)
@@ -48,7 +49,7 @@ VALUES
 ('Test', 'Testovich', 'test8@test.test', true, 100 ,'1994-08-10'),
 ('Test', 'Testovich', 'test9@test.test', true, 100 ,'1994-08-10');
 -- @block update data in table
-UPDATE users SET mass = 50; -- обновляет значения каждой записи
+UPDATE users SET mass = 50 RETURNING email, mass,id; -- обновляет значения каждой записи
 -- поставить всем юзерам с id 7 дату рождния 1996-11-11
 UPDATE users SET birthday = '1996-11-11' WHERE id = 7; 
 -- поставить всем мужчинам вес 120
@@ -59,6 +60,6 @@ UPDATE users SET first_name = 'Anton', last_name = 'Bogun' WHERE id = 1;
 UPDATE users SET mass = mass + 5 WHERE is_male;
 -- @block delete data in table
 -- удаление всех записей в таблице
-DELETE FROM users;
+DELETE FROM users RETURNING *;
 -- удаление конкретной записи
 DELETE FROM users WHERE id = 7;
