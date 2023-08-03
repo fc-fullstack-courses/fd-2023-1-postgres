@@ -56,3 +56,11 @@ DROP NOT NULL;
 ALTER TABLE users
 DROP CONSTRAINT users_first_name_check,
 ADD CHECK (first_name ~ '.{1,64}');
+-- @block change default value
+ALTER TABLE users
+ALTER COLUMN is_male
+SET DEFAULT true;
+-- @block "delete" default value
+ALTER TABLE users
+ALTER COLUMN is_male
+DROP DEFAULT;
