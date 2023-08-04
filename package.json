@@ -1,0 +1,24 @@
+{
+  "name": "fd-2023-1-postgres",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node ./script"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fc-fullstack-courses/fd-2023-1-postgres.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fc-fullstack-courses/fd-2023-1-postgres/issues"
+  },
+  "homepage": "https://github.com/fc-fullstack-courses/fd-2023-1-postgres#readme",
+  "dependencies": {
+    "pg": "^8.11.2"
+  }
+}
