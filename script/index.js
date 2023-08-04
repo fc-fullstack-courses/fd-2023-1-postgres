@@ -1,5 +1,6 @@
 const { Client } = require('pg');
 const fs = require('fs/promises');
+const { loadUsers } = require('./api/index');
 
 const config = {
   user: 'postgres', // default process.env.PGUSER || process.env.USER

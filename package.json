@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/fc-fullstack-courses/fd-2023-1-postgres#readme",
   "dependencies": {
+    "axios": "^1.4.0",
     "pg": "^8.11.2"
   }
 }
