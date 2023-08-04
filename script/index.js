@@ -1,4 +1,5 @@
 import pg from 'pg';
+import fs from 'fs/promises';
 const { Client } = pg;
 
 const config = {
@@ -11,7 +12,11 @@ const config = {
 
 const client = new Client(config);
 
+const resetDbString = await fs.readFile(`./script/reset_db.sql`, { encoding: 'utf-8' });
+
 await client.connect();
+
+await client.query(resetDbString);
 
 const { rows } = await client.query(`
   SELECT * FROM users;
