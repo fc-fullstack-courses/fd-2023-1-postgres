@@ -1,6 +1,7 @@
 const { Client } = require('pg');
 const fs = require('fs/promises');
 const { loadUsers } = require('./api/index');
+const { generateUserInsert } = require('./utils/users');
 
 const config = {
   user: 'postgres', // default process.env.PGUSER || process.env.USER
@@ -21,32 +22,32 @@ async function generateData() {
 
   const users = await loadUsers();
 
-  console.log(users);
+  // console.log(users);
 
-  // const usersSqlInserts = users.map((user) => `('${user.firstName}' ,'${user.lastName}','${user.email}', ${user.isMale}, ${user.currentBalance}, ${user.height}, ${user.weight}, '${user.birthday}')`);
+  const usersSqlInserts = users.map((user) => generateUserInsert(user));
 
-  // const userInsertString = usersSqlInserts.join(',');
+  const userInsertString = usersSqlInserts.join(',');
 
   // console.log(userInsertString);
 
-  // const { rows } = await client.query(`
-  //   INSERT INTO users (
-  //     first_name, 
-  //     last_name, 
-  //     email,
-  //     is_male,
-  //     current_balance,
-  //     height,
-  //     weight,
-  //     birthday
-  //   )
-  //   VALUES
-  //   ${userInsertString}
-  //   RETURNING *
-  //   ;
-  // `);
+  const { rows } = await client.query(`
+    INSERT INTO users (
+      first_name, 
+      last_name, 
+      email,
+      is_male,
+      current_balance,
+      height,
+      weight,
+      birthday
+    )
+    VALUES
+    ${userInsertString}
+    RETURNING *
+    ;
+  `);
 
-  // console.log(rows);
+  console.log(rows);
 
   await client.end();
 }
