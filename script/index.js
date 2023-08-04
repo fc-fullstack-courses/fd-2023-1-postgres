@@ -18,6 +18,17 @@ await client.connect();
 
 await client.query(resetDbString);
 
+const user = {
+  firstName: 'Js',
+  lastName: 'Jsonenko',
+  email: 'json@mail.com',
+  isMale: true,
+  currentBalance: 5000,
+  height: 1.68,
+  weight: 95,
+  birthday: '1992-05-07'
+}
+
 const { rows } = await client.query(`
   INSERT INTO users (
     first_name, 
@@ -30,7 +41,7 @@ const { rows } = await client.query(`
     birthday
   )
   VALUES
-  ('test','test','mail@mail.com', true, 15000, 1.75, 120, '1991-01-01')
+  ('${user.firstName}' ,'${user.lastName}','${user.email}', ${user.isMale}, ${user.currentBalance}, ${user.height}, ${user.weight}, '${user.birthday}')
   RETURNING *
   ;
 `);
