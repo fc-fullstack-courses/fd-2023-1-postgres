@@ -1,0 +1,13 @@
+{
+  "users": {
+    "minHeight": 0.3,
+    "maxHeight": 3,
+    "isHeightFloating": true,
+    "minWeight": 50,
+    "maxWeight": 160,
+    "isWeightFloating": true,
+    "minBalance": 1000,
+    "maxBalance": 50000,
+    "isBalanceFloating": false
+  }
+}
