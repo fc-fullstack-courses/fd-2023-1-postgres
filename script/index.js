@@ -19,7 +19,20 @@ await client.connect();
 await client.query(resetDbString);
 
 const { rows } = await client.query(`
-  SELECT * FROM users;
+  INSERT INTO users (
+    first_name, 
+    last_name, 
+    email,
+    is_male,
+    current_balance,
+    height,
+    weight,
+    birthday
+  )
+  VALUES
+  ('test','test','mail@mail.com', true, 15000, 1.75, 120, '1991-01-01')
+  RETURNING *
+  ;
 `);
 
 console.log(rows);
