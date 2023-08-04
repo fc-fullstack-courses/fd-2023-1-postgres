@@ -1,5 +1,6 @@
 {
   "results": 200,
   "seed": "fd-2023-1",
-  "page": 1
+  "page": 1,
+  "baseURL": "https://randomuser.me/api/"
 }

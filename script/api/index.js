@@ -1,10 +1,10 @@
 const axios = require("axios");
 const config = require('../configs/api.json');
 
-const { results, seed, page } = config;
+const { results, seed, page, baseURL } = config;
 
 const http = axios.create({
-  baseURL: 'https://randomuser.me/api/'
+  baseURL
 });
 
 module.exports.loadUsers = async () => {
