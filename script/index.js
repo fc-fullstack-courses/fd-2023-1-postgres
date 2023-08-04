@@ -1,6 +1,5 @@
-import pg from 'pg';
-import fs from 'fs/promises';
-const { Client } = pg;
+const { Client } = require('pg');
+const fs = require('fs/promises');
 
 const config = {
   user: 'postgres', // default process.env.PGUSER || process.env.USER
@@ -12,69 +11,43 @@ const config = {
 
 const client = new Client(config);
 
-const resetDbString = await fs.readFile(`./script/reset_db.sql`, { encoding: 'utf-8' });
+async function generateData() {
+  const resetDbString = await fs.readFile(`./script/reset_db.sql`, { encoding: 'utf-8' });
 
-await client.connect();
+  await client.connect();
 
-await client.query(resetDbString);
+  await client.query(resetDbString);
 
-const user = {
-  firstName: 'Js',
-  lastName: 'Jsonenko',
-  email: 'json@mail.com',
-  isMale: true,
-  currentBalance: 5000,
-  height: 1.68,
-  weight: 95,
-  birthday: '1992-05-07'
+  const users = await loadUsers();
+
+  console.log(users);
+
+  // const usersSqlInserts = users.map((user) => `('${user.firstName}' ,'${user.lastName}','${user.email}', ${user.isMale}, ${user.currentBalance}, ${user.height}, ${user.weight}, '${user.birthday}')`);
+
+  // const userInsertString = usersSqlInserts.join(',');
+
+  // console.log(userInsertString);
+
+  // const { rows } = await client.query(`
+  //   INSERT INTO users (
+  //     first_name, 
+  //     last_name, 
+  //     email,
+  //     is_male,
+  //     current_balance,
+  //     height,
+  //     weight,
+  //     birthday
+  //   )
+  //   VALUES
+  //   ${userInsertString}
+  //   RETURNING *
+  //   ;
+  // `);
+
+  // console.log(rows);
+
+  await client.end();
 }
 
-const users = [
-  {
-    firstName: 'Js',
-    lastName: 'Jsonenko',
-    email: 'json@mail.com',
-    isMale: true,
-    currentBalance: 5000,
-    height: 1.68,
-    weight: 95,
-    birthday: '1992-05-07'
-  },
-  {
-    firstName: 'Js2',
-    lastName: 'Jsonenko2',
-    email: 'jsonnn@mail.com',
-    isMale: true,
-    currentBalance: 500000,
-    height: 1.86,
-    weight: 156,
-    birthday: '1993-06-08'
-  }
-]
-
-const usersSqlInserts = users.map((user) => `('${user.firstName}' ,'${user.lastName}','${user.email}', ${user.isMale}, ${user.currentBalance}, ${user.height}, ${user.weight}, '${user.birthday}')`);
-
-const userInsertString = usersSqlInserts.join(',');
-
-console.log(userInsertString);
-
-const { rows } = await client.query(`
-  INSERT INTO users (
-    first_name, 
-    last_name, 
-    email,
-    is_male,
-    current_balance,
-    height,
-    weight,
-    birthday
-  )
-  VALUES
-  ${userInsertString}
-  RETURNING *
-  ;
-`);
-
-console.log(rows);
-
-await client.end();
+generateData();
