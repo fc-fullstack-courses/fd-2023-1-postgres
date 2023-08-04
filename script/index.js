@@ -29,6 +29,35 @@ const user = {
   birthday: '1992-05-07'
 }
 
+const users = [
+  {
+    firstName: 'Js',
+    lastName: 'Jsonenko',
+    email: 'json@mail.com',
+    isMale: true,
+    currentBalance: 5000,
+    height: 1.68,
+    weight: 95,
+    birthday: '1992-05-07'
+  },
+  {
+    firstName: 'Js2',
+    lastName: 'Jsonenko2',
+    email: 'jsonnn@mail.com',
+    isMale: true,
+    currentBalance: 500000,
+    height: 1.86,
+    weight: 156,
+    birthday: '1993-06-08'
+  }
+]
+
+const usersSqlInserts = users.map((user) => `('${user.firstName}' ,'${user.lastName}','${user.email}', ${user.isMale}, ${user.currentBalance}, ${user.height}, ${user.weight}, '${user.birthday}')`);
+
+const userInsertString = usersSqlInserts.join(',');
+
+console.log(userInsertString);
+
 const { rows } = await client.query(`
   INSERT INTO users (
     first_name, 
@@ -41,7 +70,7 @@ const { rows } = await client.query(`
     birthday
   )
   VALUES
-  ('${user.firstName}' ,'${user.lastName}','${user.email}', ${user.isMale}, ${user.currentBalance}, ${user.height}, ${user.weight}, '${user.birthday}')
+  ${userInsertString}
   RETURNING *
   ;
 `);
