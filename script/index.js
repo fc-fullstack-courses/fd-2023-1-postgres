@@ -1,7 +1,7 @@
 const { Client } = require('pg');
 const fs = require('fs/promises');
 const { loadUsers } = require('./api/index');
-const { generateUserInsert } = require('./utils/users');
+const { generateUsersSql } = require('./utils/users');
 
 const config = {
   user: 'postgres', // default process.env.PGUSER || process.env.USER
@@ -22,13 +22,7 @@ async function generateData() {
 
   const users = await loadUsers();
 
-  // console.log(users);
-
-  const usersSqlInserts = users.map((user) => generateUserInsert(user));
-
-  const userInsertString = usersSqlInserts.join(',');
-
-  // console.log(userInsertString);
+  const userInsertString = generateUsersSql(users);
 
   const { rows } = await client.query(`
     INSERT INTO users (
@@ -46,8 +40,6 @@ async function generateData() {
     RETURNING *
     ;
   `);
-
-  console.log(rows);
 
   await client.end();
 }

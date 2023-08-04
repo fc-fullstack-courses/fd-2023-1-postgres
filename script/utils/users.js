@@ -11,4 +11,7 @@ function generateUserInsert(user) {
   return `('${first}' ,'${last}','${email}', ${gender === 'male'}, ${currentBalance}, ${height}, ${weight}, '${date}')`
 }
 
+const generateUsersSql = (users) => users.map((user) => generateUserInsert(user)).join(',');
+
 module.exports.generateUserInsert = generateUserInsert;
+module.exports.generateUsersSql = generateUsersSql;
