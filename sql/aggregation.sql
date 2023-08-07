@@ -23,3 +23,22 @@ FROM users;
 -- @block count users
 SELECT count(*) FROM users
 WHERE height = 0.32;
+
+-- @block bad aggregation usage
+SELECT is_male, avg(height) AS "Average height"
+FROM users;
+
+-- @block average female height
+SELECT avg(height) "Average height"
+FROM users
+WHERE NOT is_male;
+
+-- @block average male height
+SELECT avg(height) "Average height"
+FROM users
+WHERE is_male;
+
+-- @block average height for both genders
+SELECT is_male, avg(height) "Average height"
+FROM users
+GROUP BY is_male;
