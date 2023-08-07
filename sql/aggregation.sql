@@ -92,3 +92,13 @@ HAVING count(*) > 3;
 SELECT first_name, count(first_name) FROM users
 GROUP BY first_name
 HAVING count(first_name) > 1;
+
+-- @block
+-- bad
+-- SELECT id, first_name
+-- FROM users
+-- GROUP BY first_name;
+-- good
+-- SELECT id, first_name
+-- FROM users
+-- GROUP BY id;
