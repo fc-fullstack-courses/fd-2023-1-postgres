@@ -42,3 +42,18 @@ WHERE is_male;
 SELECT is_male, avg(height) "Average height"
 FROM users
 GROUP BY is_male;
+
+-- @block Средний вес пользователей
+SELECT avg(weight) FROM users;
+-- @block Средний вес мужчин и женщин
+SELECT is_male, avg(weight) avg_weight
+FROM users
+GROUP BY is_male;
+-- @block Минимальную баланс пользователей
+SELECT min(current_balance) FROM users;
+-- @block Минимальную, среднюю и максимальную баланс пользователей ( агрегатные функции друг другу не мешают)
+SELECT min(current_balance) min_balance, avg(current_balance) avg_balance, max(current_balance) max_balance
+FROM users;
+-- @block Количество людей с определенным именем
+SELECT count(*) amount FROM users
+WHERE first_name = 'Sofia';
