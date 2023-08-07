@@ -57,3 +57,20 @@ FROM users;
 -- @block Количество людей с определенным именем
 SELECT count(*) amount FROM users
 WHERE first_name = 'Sofia';
+
+-- @block количество уникальных имен
+-- SELECT count(first_name)
+-- FROM users;
+-- 1 обеспечить уникальность имен
+-- SELECT first_name FROM users
+-- GROUP BY first_name;
+-- 2 Выполнить count над столбцом из реузультирующей таблицы из шага 1
+SELECT count(first_name) FROM (
+  SELECT first_name FROM users
+  GROUP BY first_name
+) AS unique_names;
+
+--
+-- SELECT count(first_name) 
+-- FROM users
+-- GROUP BY first_name
