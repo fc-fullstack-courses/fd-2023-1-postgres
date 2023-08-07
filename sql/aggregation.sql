@@ -87,3 +87,8 @@ SELECT EXTRACT( YEAR FROM AGE(birthday)) age,count(*) FROM users
 WHERE EXTRACT( YEAR FROM AGE(birthday)) BETWEEN 25 AND 35
 GROUP BY EXTRACT( YEAR FROM AGE(birthday))
 HAVING count(*) > 3;
+
+-- @block показать имя и количество пользователей с єтим именем. Убрать все записи где количество имен = 1
+SELECT first_name, count(first_name) FROM users
+GROUP BY first_name
+HAVING count(first_name) > 1;
