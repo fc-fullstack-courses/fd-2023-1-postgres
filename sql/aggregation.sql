@@ -74,3 +74,16 @@ SELECT count(first_name) FROM (
 -- SELECT count(first_name) 
 -- FROM users
 -- GROUP BY first_name
+
+-- @block количество людей в возрасте 25 - 35 лет
+SELECT count(*) FROM users
+WHERE EXTRACT( YEAR FROM AGE(birthday)) BETWEEN 25 AND 35;
+-- @block посчитать сколько из них какое количество лет (25,26,27)
+SELECT EXTRACT( YEAR FROM AGE(birthday)) age,count(*) FROM users
+WHERE EXTRACT( YEAR FROM AGE(birthday)) BETWEEN 25 AND 35
+GROUP BY EXTRACT( YEAR FROM AGE(birthday));
+-- @block как и раньше, но оставить только те возраста, в которых людей больше 3
+SELECT EXTRACT( YEAR FROM AGE(birthday)) age,count(*) FROM users
+WHERE EXTRACT( YEAR FROM AGE(birthday)) BETWEEN 25 AND 35
+GROUP BY EXTRACT( YEAR FROM AGE(birthday))
+HAVING count(*) > 3;
