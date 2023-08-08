@@ -9,5 +9,47 @@
     "minBalance": 1000,
     "maxBalance": 50000,
     "isBalanceFloating": false
+  },
+  "products": {
+    "productAmount": 500,
+    "minPrice": 100,
+    "maxPrice": 99999,
+    "minQuantity": 1000,
+    "maxQuantity": 50000,
+    "names": [
+      "Product",
+      "Phone",
+      "Laptop",
+      "Book",
+      "Superproduct",
+      "Mega Original Name"
+    ],
+    "descriptions": [
+      "Very original description",
+      "Bland description",
+      "Bla Bla Bla description",
+      "Lorem Ipsum description",
+      "This is product description",
+      "Padding for unique descriptions"
+    ],
+    "categories": [
+      "food",
+      "electronics",
+      "books",
+      "hobby",
+      "music",
+      "furniture",
+      "toys"
+    ],
+    "manufacturers": [
+      "Apple",
+      "Google",
+      "Rozetka",
+      "Some chineese firm",
+      "Samsung",
+      "Lorem Ipsumium",
+      "Original Company Name",
+      "NotFound LTD"
+    ]
   }
 }

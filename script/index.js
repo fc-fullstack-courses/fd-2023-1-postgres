@@ -1,6 +1,6 @@
 const fs = require('fs/promises');
 const { loadUsers } = require('./api/index');
-const { client, User } = require('./models');
+const { client, User, Product } = require('./models');
 
 async function generateData() {
   const resetDbString = await fs.readFile(`./script/reset_db.sql`, { encoding: 'utf-8' });
@@ -12,6 +12,8 @@ async function generateData() {
   const users = await loadUsers();
 
   await User.bulkCreate(users);
+
+  await Product.bulkCreate();
 
   await client.end();
 }
