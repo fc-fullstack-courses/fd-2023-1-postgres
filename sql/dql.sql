@@ -31,3 +31,20 @@ SELECT * FROM (
   FROM users
 ) AS users_with_full_names
 WHERE char_length("Full name") > 15;
+/*
+    Поиск по шаблону
+*/
+-- @block LIKE pattern
+-- _ - любой 1 символ (? в глоббинге)
+-- % - любое количество любых символов (* в глоббинге)
+SELECT * FROM users
+WHERE first_name LIKE 'S%';
+-- все имена, заканчивающиеся на s
+SELECT * FROM users
+WHERE first_name LIKE '%s';
+-- все имена, в середине которых есть буква о
+SELECT * FROM users
+WHERE first_name LIKE '%_o_%';
+-- ILIKE - регистронезавесимая версия LIKE
+SELECT * FROM users
+WHERE first_name ILIKE '%s%';
