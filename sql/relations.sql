@@ -62,3 +62,35 @@ INSERT INTO products_to_orders
 (1,1,3),
 (2,3,5),
 (3,4,10);
+-- @block reviews table
+CREATE TABLE IF NOT EXISTS reviews (
+  id SERIAL PRIMARY KEY,
+  product_id int NOT NULL REFERENCES products (id),
+  user_id int NOT NULL REFERENCES users (id),
+  -- rating_id int NOT NULL UNIQUE REFERENCES ratings (id),
+  body text,
+  UNIQUE (product_id, user_id)
+);
+-- @block ratings (1 : 1) 
+CREATE TABLE IF NOT EXISTS ratings (
+  id SERIAL PRIMARY KEY,
+  review_id int NOT NULL UNIQUE 
+  REFERENCES reviews (id) DEFERRABLE INITIALLY DEFERRED,
+  rating numeric (2,1)
+);
+--
+ALTER TABLE reviews
+ADD COLUMN rating_id int NOT NULL UNIQUE 
+REFERENCES ratings (id) DEFERRABLE INITIALLY DEFERRED;
+-- @block rating and review insert
+BEGIN;
+
+INSERT INTO reviews
+(product_id, user_id, rating_id, body) VALUES
+( 1, 5, 1, 'best product ever');
+--
+INSERT INTO ratings
+(review_id,rating) VALUES
+(1, 5);
+--
+COMMIT;
