@@ -17,3 +17,18 @@
 
         тренер - команда ( 0 : 1)
 */
+-- @block orders table (1 : m)
+DROP TABLE IF EXISTS orders;
+CREATE TABLE IF NOT EXISTS orders (
+  id SERIAL PRIMARY KEY,
+  user_id integer NOT NULL REFERENCES users (id),
+  created_at timestamp NOT NULL DEFAULT current_timestamp
+);
+-- оформление заказа
+INSERT INTO orders 
+(user_id)
+VALUES
+(5000),
+(7),
+(9),
+(5);
