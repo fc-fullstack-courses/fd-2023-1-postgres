@@ -32,3 +32,33 @@ VALUES
 (7),
 (9),
 (5);
+-- @block products table
+DROP TABLE IF EXISTS products;
+CREATE TABLE IF NOT EXISTS products (
+  id SERIAL PRIMARY KEY,
+  name varchar(300) NOT NULL,
+  category varchar(100),
+  description text,
+  price numeric(9,2) NOT NULL CHECK (price > 0),
+  quantity integer NOT NULL CHECK (quantity >= 0)
+);
+-- вставка товаров
+INSERT INTO products
+(name, category, description, price, quantity) VALUES
+('Bike', 'hobby', 'Cool bike description', 10000, 138),
+('Notebook', 'electronics', 'Powerfull notebook description', 64999, 250),
+('UAV', 'hobby', 'It flies and makes boom', 30000, 15);
+-- @block products_to_orders (n : m)
+CREATE TABLE IF NOT EXISTS products_to_orders (
+  product_id integer REFERENCES products (id),
+  order_id integer REFERENCES orders (id),
+  quantity integer NOT NULL CHECK (quantity > 0),
+  PRIMARY KEY (product_id, order_id)
+);
+-- вставка товаров в заказы
+INSERT INTO products_to_orders
+(product_id, order_id, quantity) VALUES
+(1, 2, 1),
+(1,1,3),
+(2,3,5),
+(3,4,10);
