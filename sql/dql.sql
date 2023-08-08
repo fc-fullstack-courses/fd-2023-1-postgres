@@ -48,3 +48,13 @@ WHERE first_name LIKE '%_o_%';
 -- ILIKE - регистронезавесимая версия LIKE
 SELECT * FROM users
 WHERE first_name ILIKE '%s%';
+-- @block регулярки в SQL
+/*
+  ~ - с учетом регистра
+  ~* - без учета регистра
+
+  !~ - несооответствие с учетом регистра
+  !~* - несооответствие без учета регистра
+*/
+SELECT * FROM users
+WHERE first_name !~* '^s.{0,}';
