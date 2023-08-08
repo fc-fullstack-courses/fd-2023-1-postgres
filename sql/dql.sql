@@ -58,3 +58,9 @@ WHERE first_name ILIKE '%s%';
 */
 SELECT * FROM users
 WHERE first_name !~* '^s.{0,}';
+-- @block SIMILAR TO
+SELECT * FROM users
+WHERE first_name SIMILAR TO '%s%';
+--
+SELECT * FROM users
+WHERE first_name SIMILAR TO 'S_*';
