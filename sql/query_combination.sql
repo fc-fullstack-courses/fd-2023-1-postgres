@@ -52,3 +52,11 @@ SELECT x FROM table_a;
 SELECT x FROM table_b
 EXCEPT
 SELECT x FROM table_a;
+-- @block найти все айдишники пользователей, которые совершали заказы
+SELECT user_id FROM orders
+INTERSECT
+SELECT id FROM users;
+-- @block найти все айдишники пользователей, которые не делали заказов
+SELECT id FROM users
+EXCEPT
+SELECT user_id FROM orders;
