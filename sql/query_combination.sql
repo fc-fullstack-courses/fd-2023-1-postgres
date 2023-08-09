@@ -48,3 +48,7 @@ SELECT x FROM table_b;
 SELECT x FROM table_b
 INTERSECT
 SELECT x FROM table_a;
+-- @block except - возвращает все результаты первого запроса, отсутствующее во втором
+SELECT x FROM table_b
+EXCEPT
+SELECT x FROM table_a;
