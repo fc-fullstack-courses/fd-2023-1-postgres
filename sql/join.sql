@@ -39,3 +39,15 @@ orders
 FULL JOIN
 users
 ON user_id = users.id;
+-- @block все товары производителя, которые покупали
+SELECT name, manufacturer 
+FROM products p
+JOIN products_to_orders pto ON product_id = p.id
+WHERE manufacturer = 'Google'
+GROUP BY p.id;
+-- @block получить имя, фамилию, почту пользователя и количество его заказов
+SELECT first_name, last_name, email, count(o.id) "orders"
+FROM users u
+JOIN orders o ON user_id = u.id
+GROUP BY u.id
+ORDER BY u.id;
