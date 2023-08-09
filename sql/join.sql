@@ -14,3 +14,7 @@ SELECT name, body, rating
 FROM products
 JOIN reviews ON product_id = products.id
 JOIN ratings ON rating_id = ratings.id;
+-- @block данные о всех заказах и входящих в них продуктах
+SELECT name, price, products_to_orders.quantity, orders.id FROM orders
+JOIN products_to_orders ON order_id = orders.id
+JOIN products ON product_id = products.id;
