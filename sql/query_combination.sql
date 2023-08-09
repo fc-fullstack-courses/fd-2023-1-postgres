@@ -44,3 +44,7 @@ SELECT * FROM table_a, table_b;
 SELECT x FROM table_a
 UNION
 SELECT x FROM table_b;
+-- @block intersect - общие записи из обоих запросов (пересечение запросов)
+SELECT x FROM table_b
+INTERSECT
+SELECT x FROM table_a;
