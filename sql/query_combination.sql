@@ -40,3 +40,7 @@ INSERT INTO table_b
 -- SELECT * FROM table_b;
 --
 SELECT * FROM table_a, table_b;
+-- @block union - обьединение запросов
+SELECT x FROM table_a
+UNION
+SELECT x FROM table_b;
