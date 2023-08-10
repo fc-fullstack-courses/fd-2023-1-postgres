@@ -50,8 +50,7 @@ CREATE TABLE IF NOT EXISTS reviews (
   product_id int NOT NULL REFERENCES products,
   user_id int NOT NULL REFERENCES users,
   -- rating_id int NOT NULL UNIQUE REFERENCES ratings,
-  body text,
-  UNIQUE (product_id, user_id)
+  body text
 );
 --
 CREATE TABLE IF NOT EXISTS ratings (
