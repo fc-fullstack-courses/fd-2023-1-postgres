@@ -95,3 +95,15 @@ WHERE total > (SELECT avg(sum)
     GROUP BY order_id
   ) orders_with_price
 )
+-- @block WITH
+WITH orders_with_price AS (
+  SELECT order_id, sum(price * pto.quantity) total
+  FROM products_to_orders pto
+  JOIN products p ON p.id = product_id
+  GROUP BY order_id
+), avg_order_price AS (
+  SELECT avg(total) FROM orders_with_price
+)
+SELECT *
+FROM orders_with_price owp
+WHERE owp.total > (SELECT * FROM avg_order_price);
