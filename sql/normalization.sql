@@ -81,3 +81,54 @@ CREATE TABLE departments (
   name TEXT,
   department_phone_number TEXT
 );
+-- @block BCNF (3.5NF)
+/*
+  есть преподы, студенты и предметы
+  студенты изучают предметы
+  у каждого предмета есть много учителей
+  препод ведет только 1 предмет
+
+  students n : m subjects
+  students n : m teachers
+  teachers n : 1 subject
+*/
+CREATE TABLE students (
+  id INT
+);
+--
+CREATE TABLE teachers (
+  id INT
+);
+-- отношение не в BCNF
+CREATE TABLE students_to_teachers_to_subjects (
+  teacher_id INT REFERENCES teachers,
+  stud_id INT REFERENCES students,
+  subject TEXT,
+  PRIMARY KEY (teacher_id, stud_id)
+);
+--
+INSERT INTO students_to_teachers_to_subjects
+(teacher_id, stud_id, subject) VALUES 
+(1, 1, 'math'),
+(1, 2, 'math'),
+(2, 1, 'music'),
+(2, 2, 'geography');
+-- отношение в BCNF
+CREATE TABLE subjects (
+  id INT,
+);
+--
+CREATE TABLE students (
+  id INT
+);
+--
+CREATE TABLE teachers (
+  id INT,
+  subject_id INT REFERENCES subjects
+);
+--
+CREATE TABLE students_to_teachers (
+  teacher_id INT REFERENCES teachers,
+  stud_id INT REFERENCES students,
+  PRIMARY KEY (teacher_id, stud_id)
+);
