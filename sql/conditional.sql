@@ -106,3 +106,14 @@ ORDER BY id ASC;
 -- @block
 SELECT id, name, category, COALESCE(description, 'Description not provided') "description" ,manufacturer, name,price, quantity FROM products
 ORDER BY id ASC;
+-- @block NULLIF
+SELECT NULLIF(50,50); -- null
+SELECT NULLIF(NULL ,NULL); -- null
+SELECT NULLIF(10,100); -- 10
+SELECT NULLIF('test', 'test1'); -- test
+SELECT NULLIF (NULL, 'test1'); -- null
+-- @block COALESCE reverse
+SELECT NULLIF(description, 'Description not provided') "real description" ,* FROM (
+  SELECT id, name, category, COALESCE(description, 'Description not provided') "description" ,manufacturer, name,price, quantity FROM products
+ORDER BY id ASC
+) coalesce_res;
