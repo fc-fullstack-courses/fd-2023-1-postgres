@@ -66,3 +66,32 @@ CASE manufacturer
   ELSE 'not important'
 END brand
 FROM products;
+-- @block показать все товары со столбцом ценовой диапазон
+/*
+  цена товара ниже средней - дешево
+  цена товара выше средней - дорого
+*/
+SELECT id, name, price,
+CASE
+  WHEN price <= (SELECT avg(price) FROM products) THEN 'дешево'
+  WHEN price > (SELECT avg(price) FROM products) THEN 'дорого'
+END "price bracket"
+FROM products;
+--
+SELECT id, name, price,
+CASE price <= (SELECT avg(price) FROM products)
+  WHEN true THEN 'дешево'
+  ELSE 'дорого'
+END "price bracket"
+FROM products;
+--
+WITH avg_product_price AS (
+  SELECT avg(price) FROM products
+)
+SELECT id, name, price,
+CASE price <= (SELECT * FROM avg_product_price)
+  WHEN true THEN 'дешево'
+  ELSE 'дорого'
+END "price bracket"
+FROM products;
+
