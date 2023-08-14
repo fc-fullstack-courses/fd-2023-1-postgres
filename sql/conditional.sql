@@ -94,4 +94,15 @@ CASE price <= (SELECT * FROM avg_product_price)
   ELSE 'дорого'
 END "price bracket"
 FROM products;
-
+-- @block COALESCE
+SELECT COALESCE(NULL, 100);
+SELECT COALESCE('test', NULL);
+SELECT COALESCE(NULL, 'value', NULL);
+--
+UPDATE products SET description = NULL WHERE id BETWEEN 1 AND 10;
+--
+SELECT * FROM products
+ORDER BY id ASC;
+-- @block
+SELECT id, name, category, COALESCE(description, 'Description not provided') "description" ,manufacturer, name,price, quantity FROM products
+ORDER BY id ASC;
