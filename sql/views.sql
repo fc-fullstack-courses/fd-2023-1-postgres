@@ -38,3 +38,9 @@ ORDER BY id;
 -- @block
 DROP VIEW users_with_orders_amount;
 DROP MATERIALIZED VIEW u_w_o_a;
+/*
+  создать вьюшку, в которой будут 
+  данные про пользователя, но 
+  вместо is_male будет gender
+  также должно присутствовать поле age - возраст пользователя
+*/
