@@ -26,3 +26,11 @@ WHERE EXISTS (
   FROM orders
   WHERE orders.user_id = users.id
 );
+-- @block ANY / SOME
+SELECT * 
+FROM users
+WHERE id = ANY(SELECT user_id FROM orders);
+-- @block ALL
+SELECT *
+FROM users
+WHERE id != ALL (SELECT user_id FROM orders);
