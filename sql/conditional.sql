@@ -37,3 +37,32 @@ CASE extract( month from birthday)
   WHEN 12 THEN 'Winter'
 END "season of birth"
 FROM users;
+-- @block покажите часть данных о пользователях, также отобразите столбец возрастной группы
+/*
+  люди до 25 лет - молодые
+  от 25 до 55 - средний возраст
+  все старше - пожилые
+*/
+SELECT id, email, birthday,
+EXTRACT( YEAR from age(birthday)) age,
+CASE
+  WHEN EXTRACT( YEAR from age(birthday)) < 25 THEN 'young'
+  WHEN EXTRACT( YEAR from age(birthday)) < 55 THEN 'middle-age'
+  WHEN EXTRACT( YEAR from age(birthday)) >= 55 THEN 'old'
+END "age group"
+FROM users;
+-- @block отобразить продукты со столбцом brand
+/*
+  Google -> Pixel
+  Apple -> iSomething
+  Samsung -> Galaxy
+  остальное -> 'not important'
+*/
+SELECT id, name, manufacturer,
+CASE manufacturer
+  WHEN 'Google' THEN 'Pixel'
+  WHEN 'Apple' THEN 'iSomething'
+  WHEN 'Samsung' THEN 'Galaxy'
+  ELSE 'not important'
+END brand
+FROM products;
