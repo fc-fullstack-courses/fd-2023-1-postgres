@@ -117,3 +117,6 @@ SELECT NULLIF(description, 'Description not provided') "real description" ,* FRO
   SELECT id, name, category, COALESCE(description, 'Description not provided') "description" ,manufacturer, name,price, quantity FROM products
 ORDER BY id ASC
 ) coalesce_res;
+-- @block GREATEST / LEAST
+SELECT GREATEST(50, 500, 5000, -5000, 2500, 357);
+SELECT LEAST(50, 500, 5000, -5000, 2500, 357);
